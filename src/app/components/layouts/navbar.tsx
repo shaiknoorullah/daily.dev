@@ -54,7 +54,7 @@ const NavBar = () => {
           />
         </button>
         <button className="bg-slate-800 p-2 rounded-xl hidden md:block">
-          <Bell className="" />
+          <Bell />
         </button>
 
         <div className="flex gap-4 lg:bg-slate-800 py-1 px-[10px] rounded-xl items-center justify-center">
