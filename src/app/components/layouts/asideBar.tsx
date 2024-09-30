@@ -15,14 +15,14 @@ import Image from "next/image";
 const Sidebar = () => {
   return (
     <div className="lg:flex mr-10 hidden md:block">
-      <aside className="relative w-64 border-r border-[#444343] text-gray-300 p-4">
-        <div className="mt-10">
+      <aside className="relative w-64 border-r border-[#444343] text-gray-300 pl-2 ">
+        <div className="mt-8">
           <div className="mb-6">
-            <p className="text-xs uppercase font-semibold mb-2">My Feed</p>
+            {/* <p className="text-xs uppercase font-semibold mb-2">My Feed</p> */}
             <div className="space-y-2">
               <div className="flex items-center space-x-2 hover:bg-gray-800 rounded py-1 px-2 cursor-pointer">
-                <div className="bg-red-500 w-5 h-5 rounded-xl flex items-center justify-center">
-                  <span className="text-white">M</span>
+                <div className="bg-red-500 w-4  rounded-[3px] justify-center flex items-center">
+                  <span className="text-white text-[10px]">M</span>
                 </div>
                 <span className="text-sm">My Feed</span>
               </div>
