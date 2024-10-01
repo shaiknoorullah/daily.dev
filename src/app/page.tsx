@@ -4,9 +4,9 @@ import NavBar from "./components/layouts/navbar";
 
 export default function Home() {
   return (
-    <div>
+    <div className="">
       <NavBar />
-      <div className="flex">
+      <div className="w-full h-screen grid grid-cols-6 overflow-y-clip">
         <Sidebar />
         <Feed />
       </div>

@@ -4,7 +4,7 @@ import Image from "next/image";
 
 const NavBar = () => {
   return (
-    <div className="text-white border-b border-[#444343] flex justify-between items-center px-6 py-2">
+    <div className="text-white border-b border-[#444343] fixed w-full backdrop-blur-2xl z-10 flex justify-between items-center px-6 py-2">
       <button className="flex items-center space-x-2">
         <Image src="/devlogo.png" alt="Logo" width={130} height={35} />
       </button>
