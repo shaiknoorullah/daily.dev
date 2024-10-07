@@ -1,45 +1,33 @@
-import React from "react";
+"use client";
+import React, { useEffect, useState } from "react";
 import FilterButtons from "../common/fiterButton";
 import FeedCard from "../common/feedCard";
-const feedData = [
-  {
-    title: "Meta's Ray-Bans will now 'remember' things for you",
-    hashtags: ["#tech-news", "#ai", "#wearable"],
-    readTime: "Today • 3m read time",
-    image: "/Meta.jpg",
-  },
-  {
-    title: "Tesla's Cybertruck enters production phase",
-    hashtags: ["#tech-news", "#electric-vehicles", "#tesla"],
-    readTime: "Yesterday • 5m read time",
-    image: "/Tesla.jpg",
-  },
-  {
-    title: "New AI breakthrough promises faster medical diagnosis",
-    hashtags: ["#ai", "#healthcare", "#tech-news"],
-    readTime: "2 days ago • 4m read time",
-    image: "/NewAi.jpg",
-  },
-  {
-    title: "The future of electric vehicles: What to expect",
-    hashtags: ["#electric-vehicles", "#future", "#innovation"],
-    readTime: "Last week • 6m read time",
-    image: "/download.jpg",
-  },
-  {
-    title: "AI and its impact on modern healthcare",
-    hashtags: ["#ai", "#healthcare", "#technology"],
-    readTime: "A month ago • 5m read time",
-    image: "/modernhealthcare.jpg",
-  },
-  {
-    title: "Exploring the latest trends in wearable tech",
-    hashtags: ["#tech-news", "#wearable", "#gadgets"],
-    readTime: "Last month • 7m read time",
-    image: "/wearabletech.jpg",
-  },
-];
+
+interface FeedItem {
+  title: string;
+  hashtags: string[];
+  readTime: string;
+  image: string;
+}
+
 function Feed() {
+  const [feedData, setFeedData] = useState<FeedItem[]>([]);
+
+  useEffect(() => {
+    fetch("https://jsonplaceholder.typicode.com/todos")
+      .then((response) => response.json())
+      .then((data) => {
+        const formattedData = data.slice(0, 6).map((item: any) => ({
+          title: item.title,
+          hashtags: ["#todo", "#jsonplaceholder"],
+          readTime: `${item.completed ? "Completed" : "Not Completed"}`,
+          image: "/default.jpg",
+        }));
+        setFeedData(formattedData);
+      })
+      .catch((error) => console.error("Error fetching data:", error));
+  }, []);
+
   return (
     <div className="lg:p-11 col-span-5 lg:flex lg:flex-col flex flex-col p-4 h-full overflow-y-auto  no-scrollbar">
       <FilterButtons />
