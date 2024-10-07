@@ -41,7 +41,7 @@ const feedData = [
 ];
 function Feed() {
   return (
-    <div className="lg:p-11 col-span-5 lg:flex lg:flex-col flex flex-col p-4 h-full overflow-y-auto mt-12 no-scrollbar">
+    <div className="lg:p-11 col-span-5 lg:flex lg:flex-col flex flex-col p-4 h-full overflow-y-auto  no-scrollbar">
       <FilterButtons />
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-9 bg-[#0E1217] lg:p-8">
         {feedData.map((data, index) => (

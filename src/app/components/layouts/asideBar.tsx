@@ -15,7 +15,7 @@ import Image from "next/image";
 const Sidebar = () => {
   return (
     <div className="h-full overflow-y-scroll col-span-1 no-scrollbar">
-      <div className="lg:flex hidden md:block mt-12">
+      <div className="lg:flex hidden md:block ">
         <aside className="relative w-64 border-r border-[#444343] text-gray-300 pl-2 ">
           <div className="mt-8">
             <div className="mb-6">

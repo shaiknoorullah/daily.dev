@@ -1,10 +1,64 @@
-import React from "react";
+"use client";
+
+import React, { useState, useEffect } from "react";
 import { Search, Bell } from "lucide-react";
 import Image from "next/image";
 
 const NavBar = () => {
+  const [todos, setTodos] = useState([]); // State to hold fetched todos
+  const [filteredTodos, setFilteredTodos] = useState([]); // State to hold search results
+  const [searchInput, setSearchInput] = useState(""); // State to track the search input
+
+  useEffect(() => {
+    // Fetch todos from the API
+    const fetchTodos = async () => {
+      try {
+        const response = await fetch(
+          "https://jsonplaceholder.typicode.com/todos"
+        );
+        const data = await response.json();
+        setTodos(data);
+      } catch (error) {
+        console.error("Failed to fetch todos:", error);
+      }
+    };
+
+    fetchTodos();
+  }, []);
+
+  // Effect to filter todos based on the search input
+  useEffect(() => {
+    if (searchInput.trim() === "") {
+      setFilteredTodos([]); // Clear search results when input is empty
+    } else {
+      const filtered = todos.filter((todo) =>
+        todo.title.toLowerCase().includes(searchInput.toLowerCase())
+      );
+      setFilteredTodos(filtered);
+    }
+  }, [searchInput, todos]);
+
+  useEffect(() => {
+    const searchInputElement = document.querySelector('input[type="text"]');
+
+    function handleKeyDown(event) {
+      if (event.ctrlKey && event.key === "k") {
+        event.preventDefault();
+        if (searchInputElement) {
+          searchInputElement.focus();
+        }
+      }
+    }
+
+    document.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
+
   return (
-    <div className="text-white border-b border-[#444343] fixed w-full backdrop-blur-2xl z-10 flex justify-between items-center px-6 py-2">
+    <div className="text-white border-b border-[#444343] flex justify-between items-center px-6 py-2">
       <button className="flex items-center space-x-2">
         <Image src="/devlogo.png" alt="Logo" width={130} height={35} />
       </button>
@@ -16,6 +70,8 @@ const NavBar = () => {
             type="text"
             placeholder="Search"
             className="bg-transparent outline-none text-gray-300 pl-2"
+            value={searchInput}
+            onChange={(e) => setSearchInput(e.target.value)}
           />
         </div>
 
@@ -72,6 +128,19 @@ const NavBar = () => {
           </button>
         </div>
       </div>
+
+      {/* Display search results */}
+      {searchInput && filteredTodos.length > 0 && (
+        <div className="absolute top-16 left-1/2 transform -translate-x-1/2 bg-[#1C1F26] text-white p-4 rounded-md shadow-lg w-[35%]">
+          <ul>
+            {filteredTodos.map((todo) => (
+              <li key={todo.id} className="py-2 border-b border-gray-700">
+                {todo.title}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </div>
   );
 };
