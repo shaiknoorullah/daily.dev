@@ -1,6 +1,6 @@
 import React from "react";
 import { Settings, Plus } from "lucide-react";
-import Filterarrows from "../../../../public/Filterarrows";
+import Filterarrows from "../../svgs/Filterarrows";
 
 const FilterButtons = () => {
   return (
