@@ -5,13 +5,7 @@ import ThumbsDownIcon from "../../svgs/ThumbsDownIcon";
 import CommentIcon from "../../svgs/CommentIcon";
 import BookmarkIcon from "../../svgs/BookmarkIcon";
 import LinkIcon from "../../svgs/LinkIcon";
-
-interface FeedCardProps {
-  title: string;
-  hashtags: string[];
-  readTime: string;
-  image: string;
-}
+import { FeedCardProps } from "@/app/interfaces/feedInterface";
 
 const FeedCard = ({ title, hashtags, readTime, image }: FeedCardProps) => {
   const [arrowUC, setarrowUC] = useState(0);

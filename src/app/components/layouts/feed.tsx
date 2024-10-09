@@ -2,13 +2,7 @@
 import React, { useEffect, useState } from "react";
 import FilterButtons from "../common/fiterButton";
 import FeedCard from "../common/feedCard";
-
-interface FeedItem {
-  title: string;
-  hashtags: string[];
-  readTime: string;
-  image: string;
-}
+import { FeedItem } from "@/app/interfaces/feedInterface";
 
 function Feed() {
   const [feedData, setFeedData] = useState<FeedItem[]>([]);
