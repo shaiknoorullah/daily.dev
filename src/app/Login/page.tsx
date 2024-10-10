@@ -24,7 +24,7 @@ const Auth: React.FC = () => {
       const newUser = {
         username,
         password,
-        joinDate: new Date().toLocaleDateString(),
+        // joinDate: new Date().toLocaleDateString(),
       };
       setUser(newUser);
       alert("Account created successfully!");
@@ -47,14 +47,14 @@ const Auth: React.FC = () => {
             placeholder="Username"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-3 py-2 border border-gray-300 text-black rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
           <input
             type="password"
             placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-3 py-2 border border-gray-300 text-black rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
           <button
             type="submit"
