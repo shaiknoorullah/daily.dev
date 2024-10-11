@@ -18,7 +18,7 @@ const Auth: React.FC = () => {
       if (user && user.username === username && user.password === password) {
         router.push("/");
       } else {
-        alert("Invalid credentials");
+        alert("Incorrect Email or Passwprd");
       }
     } else {
       const newUser = {
