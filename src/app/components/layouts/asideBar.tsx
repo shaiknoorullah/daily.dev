@@ -11,122 +11,97 @@ import {
   Clock,
 } from "lucide-react";
 import Image from "next/image";
+import { SidebarSection } from "@/app/interfaces/sidebarInterfaces";
 
-const Sidebar = () => {
+const generateSidebarData = (): SidebarSection[] => {
+  return [
+    {
+      title: "My Feed",
+      items: [
+        {
+          intial: "M",
+          label: "My Feed",
+          customIcon: true,
+          bgColor: "bg-red-500",
+        },
+        { icon: Plus, label: "Custom feed" },
+      ],
+    },
+    {
+      title: "Squads",
+      items: [
+        { imageSrc: "/quantum.png", label: "Public Squads" },
+        { imageSrc: "/odnoklassniki.png", label: "controversy.dev" },
+        { imageSrc: "/groupme.png", label: "daily.dev changelog" },
+        { imageSrc: "/favicon.png", label: "NexUS" },
+        { icon: Plus, label: "New Squad" },
+      ],
+    },
+    {
+      title: "Discover",
+      items: [
+        { icon: Flame, label: "Explore" },
+        { icon: MessageSquare, label: "Discussions" },
+        { icon: Hash, label: "Tags" },
+        { icon: Globe, label: "Sources" },
+        { icon: Award, label: "Leaderboard" },
+      ],
+    },
+    {
+      title: "Activity",
+      items: [
+        { icon: Link, label: "Submit a link" },
+        { icon: Bookmark, label: "Bookmarks" },
+        { icon: Clock, label: "History" },
+      ],
+    },
+  ];
+};
+
+const Sidebar: React.FC = () => {
+  const sidebarData = generateSidebarData();
+
   return (
     <div className="lg:h-full lg:overflow-y-scroll lg:col-span-1 lg:no-scrollbar">
-      <div className="lg:flex hidden md:block ">
-        <aside className="lg:relative w-64 border-r border-[#444343] text-gray-300 lg:pl-2 ">
+      <div className="lg:flex hidden md:block">
+        <aside className="lg:relative w-64 border-r border-[#444343] text-gray-300 lg:pl-2">
           <div className="mt-8">
-            <div className="mb-6">
-              {/* <p className="text-xs uppercase font-semibold mb-2">My Feed</p> */}
-              <div className="space-y-2">
-                <div className="flex items-center space-x-2 hover:bg-gray-800 rounded py-1 px-2 cursor-pointer">
-                  <div className="bg-red-500 w-4  rounded-[3px] justify-center flex items-center">
-                    <span className="text-white text-[10px]">M</span>
-                  </div>
-                  <span className="text-sm">My Feed</span>
-                </div>
-                <div className="flex items-center space-x-2 hover:bg-gray-800 rounded py-1 px-2 cursor-pointer">
-                  <Plus size={18} />
-                  <span className="text-sm">Custom feed</span>
-                </div>
-              </div>
-            </div>
-
-            <div className="mb-6">
-              <p className="text-xs uppercase font-semibold mb-2">Squads</p>
-              <div className="space-y-2">
-                <div className="flex items-center space-x-2 hover:bg-gray-800 rounded py-1 px-2 cursor-pointer">
-                  <Image
-                    src="/quantum.png"
-                    alt="Public Squads"
-                    width={20}
-                    height={20}
-                    className="rounded"
-                  />
-                  <span className="text-sm">Public Squads</span>
-                </div>
-                <div className="flex items-center space-x-2 hover:bg-gray-800 rounded py-1 px-2 cursor-pointer">
-                  <Image
-                    src="/odnoklassniki.png"
-                    alt="controversy.dev"
-                    width={20}
-                    height={20}
-                    className="rounded"
-                  />
-                  <span className="text-sm">controversy.dev</span>
-                </div>
-                <div className="flex items-center space-x-2 hover:bg-gray-800 rounded py-1 px-2 cursor-pointer">
-                  <Image
-                    src="/groupme.png"
-                    alt="daily.dev changelog"
-                    width={20}
-                    height={20}
-                    className="rounded"
-                  />
-                  <span className="text-sm">daily.dev changelog</span>
-                </div>
-                <div className="flex items-center space-x-2 hover:bg-gray-800 rounded py-1 px-2 cursor-pointer">
-                  <Image
-                    src="/favicon.png"
-                    alt="NexUS"
-                    width={20}
-                    height={20}
-                    className="rounded"
-                  />
-                  <span className="text-sm">NexUS</span>
-                </div>
-                <div className="flex items-center space-x-2 hover:bg-gray-800 rounded py-1 px-2 cursor-pointer">
-                  <Plus size={18} />
-                  <span className="text-sm">New Squad</span>
+            {sidebarData.map((section, sectionIdx) => (
+              <div key={sectionIdx} className="mb-6">
+                <p className="text-xs uppercase font-semibold mb-2">
+                  {section.title}
+                </p>
+                <div className="space-y-2">
+                  {section.items.map((item, itemId) => (
+                    <div
+                      key={itemId}
+                      className="flex items-center space-x-2 hover:bg-gray-800 rounded py-1 px-2 cursor-pointer"
+                    >
+                      {item.customIcon ? (
+                        <div
+                          className={`${item.bgColor} w-4  rounded-[3px] justify-center flex items-center`}
+                        >
+                          <span className="text-white text-[10px]">
+                            {item.intial}
+                          </span>
+                        </div>
+                      ) : item.imageSrc ? (
+                        <Image
+                          src={item.imageSrc}
+                          alt={item.label}
+                          width={20}
+                          height={20}
+                          className="rounded"
+                        />
+                      ) : item.icon ? (
+                        <item.icon size={18} />
+                      ) : null}
+                      <span className="text-sm">{item.label}</span>
+                    </div>
+                  ))}
                 </div>
               </div>
-            </div>
-
-            <div className="mb-6">
-              <p className="text-xs uppercase font-semibold mb-2">Discover</p>
-              <div className="space-y-2">
-                <div className="flex items-center space-x-2 hover:bg-gray-800 rounded py-1 px-2 cursor-pointer">
-                  <Flame size={18} />
-                  <span className="text-sm">Explore</span>
-                </div>
-                <div className="flex items-center space-x-2 hover:bg-gray-800 rounded py-1 px-2 cursor-pointer">
-                  <MessageSquare size={18} />
-                  <span className="text-sm">Discussions</span>
-                </div>
-                <div className="flex items-center space-x-2 hover:bg-gray-800 rounded py-1 px-2 cursor-pointer">
-                  <Hash size={18} />
-                  <span className="text-sm">Tags</span>
-                </div>
-                <div className="flex items-center space-x-2 hover:bg-gray-800 rounded py-1 px-2 cursor-pointer">
-                  <Globe size={18} />
-                  <span className="text-sm">Sources</span>
-                </div>
-                <div className="flex items-center space-x-2 hover:bg-gray-800 rounded py-1 px-2 cursor-pointer">
-                  <Award size={18} />
-                  <span className="text-sm">Leaderboard</span>
-                </div>
-              </div>
-            </div>
-
-            <div className="mb-6">
-              <p className="text-xs uppercase font-semibold mb-2">Activity</p>
-              <div className="space-y-2">
-                <div className="flex items-center space-x-2 hover:bg-gray-800 rounded py-1 px-2 cursor-pointer">
-                  <Link size={18} />
-                  <span className="text-sm">Submit a link</span>
-                </div>
-                <div className="flex items-center space-x-2 hover:bg-gray-800 rounded py-1 px-2 cursor-pointer">
-                  <Bookmark size={18} />
-                  <span className="text-sm">Bookmarks</span>
-                </div>
-                <div className="flex items-center space-x-2 hover:bg-gray-800 rounded py-1 px-2 cursor-pointer">
-                  <Clock size={18} />
-                  <span className="text-sm">History</span>
-                </div>
-              </div>
-            </div>
+            ))}
           </div>
         </aside>
       </div>
