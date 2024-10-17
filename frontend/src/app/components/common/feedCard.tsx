@@ -46,14 +46,15 @@ const FeedCard = ({ title, hashtags, readTime, image }: FeedCardProps) => {
           <h2 className="text-white font-semibold text-lg">{title}</h2>
         </div>
         <div className="flex flex-wrap mb-2">
-          {hashtags.map((tag, index) => (
-            <span
-              key={index}
-              className="text-xs border border-[#444343] text-gray-300 rounded-full px-2 py-1 mr-1 mb-1"
-            >
-              {tag}
-            </span>
-          ))}
+          {Array.isArray(hashtags) &&
+            hashtags.map((tag, index) => (
+              <span
+                key={index}
+                className="text-xs border border-[#444343] text-gray-300 rounded-full px-2 py-1 mr-1 mb-1"
+              >
+                {tag}
+              </span>
+            ))}
         </div>
         <p className="text-gray-400 text-sm mb-2">{readTime}</p>
         <Image
