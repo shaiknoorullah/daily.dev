@@ -1,0 +1,31 @@
+{
+    "posts": [
+        {
+            "id": "abc",
+            "title": "title",
+            "description": "",
+            "link": "asdfa",
+            "image": "",
+            "upvote": ["user1","user2","user3"],
+            "downvote": ["user4", "user5", "user6"],
+            "hashTags": ["hs1","hs2"]
+        },
+        {
+            "id": "abc",
+            "title": "title",
+            "description": "",
+            "link": "asdfa",
+            "image": "",
+            "upvote": ["user1","user2","user3"],
+            "downvote": ["user4", "user5", "user6"],
+            "hashTags": ["hs1","hs2"]
+        }
+    ],
+    "hashtags": [
+        {
+            "id": "hs1",
+            "name": "production",
+            "following": ["user1","user2","user3"]
+        }
+    ]
+}

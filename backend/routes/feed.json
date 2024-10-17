@@ -1,0 +1,47 @@
+{
+    "feeds": [
+      {
+        "id": 1,
+        "title": "Healthy Eating Tips",
+        "readTime": "5 min",
+        "tags": ["health", "nutrition", "wellness"],
+        "image": "/images/healthy-eating-tips.jpg"
+      },
+      {
+        "id": 2,
+        "title": "Top 10 Travel Destinations",
+        "readTime": "7 min",
+        "tags": ["travel", "adventure", "explore"],
+        "image": "/images/top-10-travel-destinations.jpg"
+      },
+      {
+        "id": 3,
+        "title": "Workout Routines for Beginners",
+        "readTime": "4 min",
+        "tags": ["fitness", "workout", "exercise"],
+        "image": "/images/workout-routines.jpg"
+      },
+      {
+        "id": 4,
+        "title": "How to Manage Time Effectively",
+        "readTime": "6 min",
+        "tags": ["productivity", "timemanagement", "success"],
+        "image": "/images/time-management.jpg"
+      },
+      {
+        "id": 5,
+        "title": "Latest Trends in Technology",
+        "readTime": "8 min",
+        "tags": ["technology", "innovation", "future"],
+        "image": "/images/tech-trends.jpg"
+      },
+      {
+        "id": 6,
+        "title": "Tips for Remote Working",
+        "readTime": "5 min",
+        "tags": ["remotework", "productivity", "workfromhome"],
+        "image": "/images/remote-working-tips.jpg"
+      }
+    ]
+  }
+  
