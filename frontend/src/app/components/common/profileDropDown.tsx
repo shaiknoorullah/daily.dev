@@ -20,7 +20,7 @@ const ProfileDropdown = ({ username, joinDate }: Profile) => {
     removeUser();
   };
   return (
-    <div className="absolute top-16 right-4 w-64 bg-[#1C1F26] text-white rounded-lg shadow-lg overflow-hidden">
+    <div className="absolute top-16 right-[150px] w-64 bg-[#1C1F26] text-white rounded-lg shadow-lg overflow-hidden">
       <div className="p-4 bg-[#252A36]">
         <div className="flex items-center space-x-3">
           <div className="w-12 h-12 bg-[#C2185B] rounded-lg flex items-center justify-center text-2xl font-bold">

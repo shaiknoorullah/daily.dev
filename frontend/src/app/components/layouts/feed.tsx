@@ -1,3 +1,4 @@
+"use client";
 import React, { useEffect, useState } from "react";
 import FilterButtons from "../common/fiterButton";
 import FeedCard from "../common/feedCard";
@@ -7,7 +8,8 @@ function Feed() {
   const [feedData, setFeedData] = useState<FeedItem[]>([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/feeds")
+    // Update the URL to point to your backend API
+    fetch("http://localhost:5000/data")
       .then((response) => response.json())
       .then((data) => {
         console.log("Data fetched from backend:", data);
@@ -31,9 +33,9 @@ function Feed() {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-9 bg-[#0E1217] lg:p-8">
         {feedData.map((data) => (
           <FeedCard
-            key={data._id}
+            key={data._id} // Use MongoDB _id as the unique key
             title={data.title}
-            hashtags={data.hashtags}
+            hashtags={data.hashtags} // Pass hashtags as an array
             readTime={data.readTime}
             image={data.image}
           />

@@ -5,12 +5,17 @@ import { Search, Bell } from "lucide-react";
 import Image from "next/image";
 import ProfileDropdown from "../common/profileDropDown";
 import { Todo } from "@/app/interfaces/todoInterface";
+import { useClickAway } from "@/app/hooks/clickAway"; // Import your click-away hook
 
 const NavBar = () => {
   const [todos, setTodos] = useState<Todo[]>([]);
   const [filteredTodos, setFilteredTodos] = useState<Todo[]>([]);
   const [searchInput, setSearchInput] = useState("");
   const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
+
+  const dropdownRef = useClickAway(() => {
+    setIsProfileDropdownOpen(false); // Close the profile dropdown when clicking outside
+  });
 
   useEffect(() => {
     const fetchTodos = async () => {
@@ -153,7 +158,9 @@ const NavBar = () => {
       )}
 
       {isProfileDropdownOpen && (
-        <ProfileDropdown username="ayman" joinDate="May 2024" />
+        <div ref={dropdownRef}>
+          <ProfileDropdown username="ayman" joinDate="May 2024" />
+        </div>
       )}
     </div>
   );
